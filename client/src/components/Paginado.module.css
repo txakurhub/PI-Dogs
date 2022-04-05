@@ -1,0 +1,22 @@
+ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+li {
+    list-style: none
+}
+
+.button {
+    font-family: 'Rubik Mono One', sans-serif;
+    border-radius: 30%;
+    font-size: 1rem;
+    color:#EF476F;
+    border-color: #FCFCFC;
+    border-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    margin-left: 0.27rem;
+    cursor: pointer;
+}

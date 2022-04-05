@@ -1,0 +1,23 @@
+
+
+.searchButton{
+   
+    background-color: #FCFCFC;
+    font-family: 'Rubik Mono One', sans-serif;
+    color: #26547C;
+    border-color: #FCFCFC;
+    border-style: none;
+    cursor: pointer;
+}
+
+.input{
+    border-radius: 1rem;
+    border-color: #FCFCFC;
+    border-style: none;
+    background-color: #FFD166;
+    color: #26547C;
+    text-align: center;
+    font-family: 'Rubik Mono One', sans-serif;
+    font-size: 0.8rem;
+    padding: 0.6rem;
+}

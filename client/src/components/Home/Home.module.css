@@ -1,0 +1,82 @@
+nav {
+
+    background-color: #FCFCFC;
+    height: 10rem;
+}
+
+.fCapa {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.sCapa {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: auto;
+    background-color: #FFD166;
+}
+
+.select {
+    border-radius: 1rem;
+    border-style: none;
+    background-color: #FCFCFC;
+    font-family: 'Julius Sans One', sans-serif;
+    height: 1.5rem;
+}
+
+.link {
+    text-decoration: none;
+
+}
+
+.link:hover {
+    color: #26547C
+}
+
+h1 {
+    letter-spacing: 1px;
+    font-size: 3rem;
+}
+
+body {
+    background-color: #FFD166;
+}
+
+.cardsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 230px);
+    gap: 3rem;
+    padding: 30px;
+    justify-content: center;
+}
+
+.logoImg:hover {
+    transition: 800ms;
+    height: 8rem;
+    transform: rotate(1turn);
+}
+
+/* .cards:hover {
+    opacity: 0.8;
+    transition: 400ms;
+  } */
+
+@media (max-width: 1070px) {
+    .cardsGrid {
+        grid-template-columns: repeat(auto-fill, 230px);
+    }
+
+    .nav {
+        display: flex;
+        flex-direction: column;
+
+    }
+}
+
+@media (max-width: 560px) {
+    .cardsGrid {
+        grid-template-columns: 100%;
+    }
+}

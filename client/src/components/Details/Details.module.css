@@ -1,0 +1,37 @@
+.details{
+    background-color: #FFD166;
+}
+.detailImg {
+    height: 40rem;
+    width: auto;
+}
+
+.goBack {
+    margin: 1rem;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    background-color: #EF476F;
+    color: #FCFCFC;
+    border-style: none;
+    font-family: 'Rubik Mono One', sans-serif;
+}
+
+.dogDetailsData {
+    font-family: 'Julius Sans One', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.h2details{
+    font-size: 3rem;
+    color: #26547C;
+}
+.h5details{
+    font-size: 1.4rem;
+}
+
+.pDetails {
+    margin: 2rem;
+}

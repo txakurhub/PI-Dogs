@@ -1,0 +1,44 @@
+body{
+    background-color: #FCFCFC;
+}
+.h1Land{
+    color: #EF476F
+}
+.logoLand{
+    width: 28rem;
+}
+.logoLand:hover{
+width: 32rem;
+transition: 2000ms;
+}
+
+.chivos{
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin: 3rem;
+  
+}
+
+.linkedin{
+    margin-top: 3rem;
+    margin-right: 3rem;
+    width:4rem ;
+    height:auto;
+}
+.linkedin:hover{
+
+    width: 5.5rem;
+    transition: 300ms;
+}
+
+.github{
+    margin-top: 3rem;
+    margin-left: 3rem;
+    width:4rem ;
+    height: auto;
+}
+.github:hover{
+    width: 5.5rem;
+    transition: 300ms;
+} 
