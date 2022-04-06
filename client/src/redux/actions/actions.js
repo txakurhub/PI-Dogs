@@ -9,6 +9,7 @@ export const SEARCH_BY_QUERY = "SEARCH_BY_QUERY";
 export const FILTER_BY_NAME = "FILTER_BY_NAME";
 export const SORT = "SORT";
 export const GET_DOG_DETAILS = "GET_DOG_DETAILS";
+export const SORT_WEIGHT = "SORT_WEIGHT"
 // export const DELETE_DOG = "DELETE_DOG";
 
 
@@ -66,6 +67,12 @@ export const getDogDetails = (id) => {
 export const sort = (payload) => {
   return {
     type: SORT,
+    payload,
+  };
+};
+export const sortWeight = (payload) => {
+  return {
+    type: SORT_WEIGHT,
     payload,
   };
 };

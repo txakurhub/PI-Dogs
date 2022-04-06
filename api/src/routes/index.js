@@ -25,7 +25,7 @@ const getApiDogs = async () => {
       weight: e.weight.metric,
       height: e.height.metric,
       life_span: e.life_span,
-      temperament: e.temperament,
+      temperament: e.temperament? e.temperament : "No temperaments",
       imgUrl: e.image.url,
       description: e.description,
     };

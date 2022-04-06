@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createDog, getAllTemperaments } from "../../redux/actions/actions";
-import styles from "./CreateDog.module.css"
+import styles from "./CreateDog.module.css";
 
 export default function CreateDog() {
   const dispatch = useDispatch();
@@ -11,36 +11,23 @@ export default function CreateDog() {
 
   const [dog, setDog] = useState({
     name: "",
-    minHeight: 0,
-    maxHeight: 0,
-    minWeight: 0,
-    maxWeight: 0,
+    minHeight: "",
+    maxHeight: "",
+    minWeight: "",
+    maxWeight: "",
     temperaments: [],
-    min_life_span: 0,
-    max_life_span: 0,
+    min_life_span: "",
+    max_life_span: "",
     imgUrl: "",
   });
-  const [errors, setErrors] = useState("")
 
   useEffect(() => {
     dispatch(getAllTemperaments());
   }, [dispatch]);
 
-  function handleChange(e) {
-    setDog({ ...dog, [e.target.name]: e.target.value });
-    setErrors(validate(dog))
-  }
   let weight = `${dog.minWeight} - ${dog.maxWeight} kgs`;
   let height = `${dog.minHeight} - ${dog.maxHeight} inches`;
   let life_span = `${dog.min_life_span} - ${dog.max_life_span} years`;
-
-  function handleSelect(e) {
-    setDog({
-      ...dog,
-      temperaments: [...dog.temperaments, e.target.value],
-    });
-  }
-
   let newDog = {
     name: dog.name,
     weight,
@@ -50,13 +37,32 @@ export default function CreateDog() {
     imgUrl: dog.imgUrl,
   };
 
+  function handleChange(e) {
+    setDog({ ...dog, [e.target.name]: e.target.value });
+  }
+
+  function handleSelect(e) {
+    if(!dog.temperaments.includes(e.target.value))
+    setDog({
+      ...dog,
+      temperaments: [...dog.temperaments, e.target.value],
+    });
+  }
+
+  const handleDelete = (t) => {
+    setDog({
+      ...dog,
+      temperaments: dog.temperaments.filter((temp) => temp !== t),
+    });
+  };
+
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(createDog(newDog));
   }
-console.log(errors)
+  // console.log(errors)
   return (
-    <div className="dogForm">
+    <div className={styles.dogForm}>
       <Link to="/home">
         <button className={styles.goBack}>Back to home</button>
       </Link>
@@ -66,67 +72,106 @@ console.log(errors)
         <label>Name: </label>
         <br />
         <input
-        className={errors.name && "danger"}
           type="text"
           name="name"
           value={dog.name}
           onChange={(e) => handleChange(e)}
+          required
+          minLength={3}
         ></input>
-           {errors.name && <p className={styles.danger}>{errors.name}</p>}
+        {/* {!errors.name 
+         ? <p className={styles.emergentW}>{errors.name}</p>
+         :  <p className={styles.emergent}>{errors.name}</p>
+         } */}
         <br />
-        <label>Height: </label>
+        <label>Height in inches: </label>
         <br />
+        <span className={styles.guide}>min (2)</span>
         <input
-        className={errors.height && "danger"}
           type="number"
           name="minHeight"
           value={dog.minHeight}
           onChange={(e) => handleChange(e)}
+          required
+          min={2}
+          max={10}
         ></input>
+        -
         <input
-          className={errors.height && "danger"}
+          // className={errors.height && "danger"}
           type="number"
           name="maxHeight"
           value={dog.maxHeight}
           onChange={(e) => handleChange(e)}
+          required
+          min={10}
+          max={40}
         ></input>
+        <span className={styles.guide}>max (40)</span>
         <br />
-         {errors.height && <p className={styles.danger}>{errors.height}</p>}
-        <label>Weight: </label>
+        {/* {!errors.height 
+         ? <p className={styles.emergentW}>{errors.height}</p>
+         :  <p className={styles.emergent}>{errors.height}</p>
+         } */}
+        <label>Weight in kgs: </label>
         <br />
+        <span className={styles.guide}>min (2)</span>
         <input
-          className={errors.weight && "danger"}
+          // className={errors.weight && "danger"}
           type="number"
           name="minWeight"
           value={dog.minWeight}
           onChange={(e) => handleChange(e)}
+          required
+          min={2}
+          max={20}
         ></input>
+        -
         <input
-        className={errors.weight && "danger"}
+          // className={errors.weight && "danger"}
           type="number"
           name="maxWeight"
           value={dog.maxWeight}
           onChange={(e) => handleChange(e)}
+          required
+          min={5}
+          max={90}
         ></input>
-        {errors.weight && <p className={styles.danger}>{errors.weight}</p>}
+        <span className={styles.guide}>max (90)</span>
+        {/* {!errors.weight 
+         ? <p className={styles.emergentW}>{errors.weight}</p>
+         :  <p className={styles.emergent}>{errors.weight}</p>
+         } */}
         <br />
-        <label>Life Span: </label>
+        <label>Life Span in years: </label>
         <br />
+        <span className={styles.guide}>min (5) </span>
         <input
-        className={errors.life_span && "danger"}
+          // className={errors.life_span && "danger"}
           type="number"
           name="min_life_span"
           value={dog.min_life_span}
           onChange={(e) => handleChange(e)}
+          required
+          min={5}
+          max={10}
         ></input>
+        -
         <input
-         className={errors.life_span && "danger"}
+          //  className={errors.life_span && "danger"}
           type="number"
           name="max_life_span"
           value={dog.max_life_span}
           onChange={(e) => handleChange(e)}
+          required
+          min={10}
+          max={20}
         ></input>
-        {errors.life_span && <p className={styles.danger}>{errors.life_span}</p>}
+        <span className={styles.guide}>max (20)</span>
+        {/* {!errors.life_span 
+         ? <p className={styles.emergentW}>{errors.life_span}</p>
+         :  <p className={styles.emergent}>{errors.life_span}</p>
+         } */}
         <br />
         <label>Image: </label>
         <br />
@@ -135,67 +180,74 @@ console.log(errors)
           name="imgUrl"
           value={dog.imgUrl}
           onChange={(e) => handleChange(e)}
+          required
         ></input>
         <br />
         <label>Temperament: </label>
         <br />
-        <select>
-          <option onChange={(e) => handleSelect(e)}>Temperaments</option>
+        <select onChange={(e) => handleSelect(e)}>
+          <option disabled>Temperaments</option>
           {tempsName.map((t) => {
             return (
-              <option value={t} key={tempsName.indexOf(t)}>
+              <option value={t}  selected key={tempsName.indexOf(t)}>
                 {t}
               </option>
             );
           })}
         </select>
         <ul>
-          <li>{dog.temperaments.map((t) => t + ", ")}</li>
+          {dog.temperaments.map((t) => {
+            return (
+              <li>
+                <button
+                  key={dog.temperaments.indexOf(t)}
+                  className={styles.buttonSelect}
+                  onClick={() => handleDelete(t)}
+                >
+                  {t}
+                </button>
+              </li>
+            );
+          })}
         </ul>
-
-        {/* <input
-          type="checkbox"
-          name="temperament"
-          value={dog.temperament}
-          onChange={(e) => handleChange(e)}
-        ></input>*/}
-
         <br />
-        <button type="submit">Create</button>
+        <button className={styles.create} type="submit">
+          Create
+        </button>
       </form>
     </div>
   );
 }
-export function validate(dog) {
-  let errors = {};
+// export function validate(dog) {
+//   let errors = {};
 
-  if (!dog.name) {
-    errors.name = "Name is required";
-  }
+//   if (!dog.name) {
+//     errors.name = "Name is required";
+//   }
+//   if (dog.name.length<3) {
+//     errors.name = "Name must have at least three characters";
+//   }
 
- 
-  if (parseInt(dog.minHeight) < 2 || parseInt(dog.maxWeight) > 90) {
-    errors.height = "The height has to be between of 2 and 90 kgs"
-  } 
-  // else  if(!dog.minWeight || !dog.maxWeight){
-  //   errors.weight = "Weight is required"
-  // } 
+//   if (parseInt(dog.minHeight) < 2 || parseInt(dog.maxWeight) > 90) {
+//     errors.height = "The height has to be between of 2 and 90 kgs"
+//   }
+//   // else  if(!dog.minWeight || !dog.maxWeight){
+//   //   errors.weight = "Weight is required"
+//   // }
 
-  if (parseInt(dog.minHeight) < 5 || parseInt(dog.maxWeight) > 36) {
-    errors.weight = "The weight has to be between of 5 and 36 inches"
-  } 
-  // else if(!dog.minHeight || !dog.maxHeight){
-  //   errors.height = "Height is required"
-  // }
+//   if (parseInt(dog.minHeight) < 5 || parseInt(dog.maxWeight) > 36) {
+//     errors.weight = "The weight has to be between of 5 and 36 inches"
+//   }
+//   // else if(!dog.minHeight || !dog.maxHeight){
+//   //   errors.height = "Height is required"
+//   // }
 
-  if (parseInt(dog.min_life_span) < 6 || parseInt(dog.max_life_span) > 20) {
-    errors.life_span = "The weight has to be between of 6 and 20 inches"
-  } 
-  // else if(!dog.min_life_span || !dog.max_life_span){
-  //   errors.life_span = "Life Span is required"
-  // }
- 
-  
-  
-  return errors;
-}
+//   if (parseInt(dog.min_life_span) < 6 || parseInt(dog.max_life_span) > 20) {
+//     errors.life_span = "The weight has to be between of 6 and 20 inches"
+//   }
+//   // else if(!dog.min_life_span || !dog.max_life_span){
+//   //   errors.life_span = "Life Span is required"
+//   // }
+
+//   return errors;
+// }
