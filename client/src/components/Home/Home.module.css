@@ -31,8 +31,13 @@ nav {
 
 }
 
-.link:hover {
+.linkNewBark {
+    text-decoration: none;
     color: #26547C
+}
+
+.linkNewBark:hover {
+    color: #EF476F
 }
 
 h1 {
@@ -41,7 +46,8 @@ h1 {
 }
 
 body {
-    background-color: #FFD166;
+    background-color: #FCFCFC;
+    /* background: linear-gradient(to top, #c19954, #FCFCFC) */
 }
 
 .cardsGrid {

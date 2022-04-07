@@ -19,8 +19,8 @@ export default function Home() {
   const dispatch = useDispatch();
 
   const allDogs = useSelector((state) => state.dogs);
-
   const [currentPage, setCurrentPage] = useState(1);
+  const [order, setOrder] = useState("")
 
   // const [dogsPerPage, setDogsPerPage] = useState(8);
   const lastDogI = currentPage * 8;
@@ -39,11 +39,13 @@ export default function Home() {
     e.preventDefault();
     dispatch(sort(e.target.value));
     setCurrentPage(1);
+    setOrder(`Ordenado ${e.target.value}`)
   }
   function handleWeight(e){
     e.preventDefault();
     dispatch(sortWeight(e.target.value));
     setCurrentPage(1);
+    setOrder(`Ordenado ${e.target.value}`)
   }
   
 
@@ -65,11 +67,12 @@ export default function Home() {
         </div>
 
         <div className={styles.sCapa}>
-          {/* FILTRO ASCENDENTE - DESCENDENTE */}
+          {/* FILTRO SORT */}
           <select className={styles.select} onChange={handleSort}>
             <option value="Asc">A - Z</option>
             <option value="Desc">Z - A</option>
           </select>
+          {/* FILTRO PESO */}
           <select className={styles.select} onChange={handleWeight}>
             <option value="Min">Min Weight</option>
             <option value="Max">Max Weight</option>
@@ -78,13 +81,15 @@ export default function Home() {
           <FilterByTemp className={styles.select} />
           <FilterByName className={styles.select} />
 
-          <Link className={styles.link} to="/dog">
+          <Link className={styles.linkNewBark} to="/dog">
             Create
             <br /> new bark
           </Link>
         </div>
       </nav>
+      <div className={styles.SecondHalf}>
 
+      
       <div className={styles.cardsGrid}>
         {currentDogs?.map((d) => {
           return (
@@ -103,6 +108,7 @@ export default function Home() {
         })}
       </div>
       <Paginado dogsPerPage={8} allDogs={allDogs.length} paginado={paginado} />
+      </div>
     </div>
   );
 }

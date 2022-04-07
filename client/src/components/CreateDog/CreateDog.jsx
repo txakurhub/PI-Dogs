@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createDog, getAllTemperaments } from "../../redux/actions/actions";
 import styles from "./CreateDog.module.css";
 
 export default function CreateDog() {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const allTemps = useSelector((state) => state.temperaments);
   let tempsName = allTemps.map((t) => t.name).sort();
 
@@ -57,8 +58,11 @@ export default function CreateDog() {
   };
 
   function handleSubmit(e) {
+    if(newDog.imgUrl === "") newDog.imgUrl = "https://freepsdflyer.com/wp-content/uploads/2016/10/Lost-Dog-FREE-PSD-Flyer-Template-FreePSDFlyer-com.jpg"
     e.preventDefault();
     dispatch(createDog(newDog));
+    alert("Dog created sucefully!")
+    navigate("/home")
   }
   // console.log(errors)
   return (
@@ -180,7 +184,7 @@ export default function CreateDog() {
           name="imgUrl"
           value={dog.imgUrl}
           onChange={(e) => handleChange(e)}
-          required
+          
         ></input>
         <br />
         <label>Temperament: </label>
