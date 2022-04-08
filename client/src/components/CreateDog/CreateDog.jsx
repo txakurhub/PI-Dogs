@@ -6,10 +6,13 @@ import styles from "./CreateDog.module.css";
 
 export default function CreateDog() {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const allTemps = useSelector((state) => state.temperaments);
   let tempsName = allTemps.map((t) => t.name).sort();
 
+// ACÁ TEMPERAMENTS SIEMPRE ES UN ARRAY
+
+  const [errors, setErrors] = useState("");
   const [dog, setDog] = useState({
     name: "",
     minHeight: "",
@@ -40,14 +43,15 @@ export default function CreateDog() {
 
   function handleChange(e) {
     setDog({ ...dog, [e.target.name]: e.target.value });
+    setErrors(validate(dog));
   }
 
   function handleSelect(e) {
-    if(!dog.temperaments.includes(e.target.value))
-    setDog({
-      ...dog,
-      temperaments: [...dog.temperaments, e.target.value],
-    });
+    if (!dog.temperaments.includes(e.target.value))
+      setDog({
+        ...dog,
+        temperaments: [...dog.temperaments, e.target.value],
+      });
   }
 
   const handleDelete = (t) => {
@@ -58,11 +62,13 @@ export default function CreateDog() {
   };
 
   function handleSubmit(e) {
-    if(newDog.imgUrl === "") newDog.imgUrl = "https://freepsdflyer.com/wp-content/uploads/2016/10/Lost-Dog-FREE-PSD-Flyer-Template-FreePSDFlyer-com.jpg"
+    if (newDog.imgUrl === "")
+      newDog.imgUrl =
+        "https://freepsdflyer.com/wp-content/uploads/2016/10/Lost-Dog-FREE-PSD-Flyer-Template-FreePSDFlyer-com.jpg";
     e.preventDefault();
     dispatch(createDog(newDog));
-    alert("Dog created sucefully!")
-    navigate("/home")
+    alert("Dog created sucefully!");
+    navigate("/home");
   }
   // console.log(errors)
   return (
@@ -78,15 +84,13 @@ export default function CreateDog() {
         <input
           type="text"
           name="name"
+          autoComplete="off"
           value={dog.name}
           onChange={(e) => handleChange(e)}
           required
           minLength={3}
         ></input>
-        {/* {!errors.name 
-         ? <p className={styles.emergentW}>{errors.name}</p>
-         :  <p className={styles.emergent}>{errors.name}</p>
-         } */}
+        {errors.name && <p className={styles.emergent}>{errors.name}</p>}
         <br />
         <label>Height in inches: </label>
         <br />
@@ -98,7 +102,7 @@ export default function CreateDog() {
           onChange={(e) => handleChange(e)}
           required
           min={2}
-          max={10}
+          // max={15}
         ></input>
         -
         <input
@@ -108,15 +112,12 @@ export default function CreateDog() {
           value={dog.maxHeight}
           onChange={(e) => handleChange(e)}
           required
-          min={10}
+          // min={10}
           max={40}
         ></input>
         <span className={styles.guide}>max (40)</span>
         <br />
-        {/* {!errors.height 
-         ? <p className={styles.emergentW}>{errors.height}</p>
-         :  <p className={styles.emergent}>{errors.height}</p>
-         } */}
+        {errors.height && <p className={styles.emergent}>{errors.height}</p>}
         <label>Weight in kgs: </label>
         <br />
         <span className={styles.guide}>min (2)</span>
@@ -128,7 +129,7 @@ export default function CreateDog() {
           onChange={(e) => handleChange(e)}
           required
           min={2}
-          max={20}
+          // max={20}
         ></input>
         -
         <input
@@ -138,14 +139,11 @@ export default function CreateDog() {
           value={dog.maxWeight}
           onChange={(e) => handleChange(e)}
           required
-          min={5}
+          // min={5}
           max={90}
         ></input>
         <span className={styles.guide}>max (90)</span>
-        {/* {!errors.weight 
-         ? <p className={styles.emergentW}>{errors.weight}</p>
-         :  <p className={styles.emergent}>{errors.weight}</p>
-         } */}
+        {errors.weight && <p className={styles.emergent}>{errors.weight}</p>}
         <br />
         <label>Life Span in years: </label>
         <br />
@@ -158,7 +156,7 @@ export default function CreateDog() {
           onChange={(e) => handleChange(e)}
           required
           min={5}
-          max={10}
+          // max={10}
         ></input>
         -
         <input
@@ -168,14 +166,13 @@ export default function CreateDog() {
           value={dog.max_life_span}
           onChange={(e) => handleChange(e)}
           required
-          min={10}
+          // min={10}
           max={20}
         ></input>
         <span className={styles.guide}>max (20)</span>
-        {/* {!errors.life_span 
-         ? <p className={styles.emergentW}>{errors.life_span}</p>
-         :  <p className={styles.emergent}>{errors.life_span}</p>
-         } */}
+        {errors.life_span && (
+          <p className={styles.emergent}>{errors.life_span}</p>
+        )}
         <br />
         <label>Image: </label>
         <br />
@@ -184,7 +181,6 @@ export default function CreateDog() {
           name="imgUrl"
           value={dog.imgUrl}
           onChange={(e) => handleChange(e)}
-          
         ></input>
         <br />
         <label>Temperament: </label>
@@ -193,7 +189,7 @@ export default function CreateDog() {
           <option disabled>Temperaments</option>
           {tempsName.map((t) => {
             return (
-              <option value={t}  selected key={tempsName.indexOf(t)}>
+              <option value={t} key={tempsName.indexOf(t)}>
                 {t}
               </option>
             );
@@ -203,13 +199,18 @@ export default function CreateDog() {
           {dog.temperaments.map((t) => {
             return (
               <li>
-                <button
+                <div
                   key={dog.temperaments.indexOf(t)}
-                  className={styles.buttonSelect}
-                  onClick={() => handleDelete(t)}
+                  className={styles.buttonTemp}
                 >
                   {t}
-                </button>
+                  <button
+                    className={styles.buttonSelect}
+                    onClick={() => handleDelete(t)}
+                  >
+                    x
+                  </button>
+                </div>
               </li>
             );
           })}
@@ -222,36 +223,49 @@ export default function CreateDog() {
     </div>
   );
 }
-// export function validate(dog) {
-//   let errors = {};
+export function validate(dog) {
+  let errors = {};
 
-//   if (!dog.name) {
-//     errors.name = "Name is required";
-//   }
-//   if (dog.name.length<3) {
-//     errors.name = "Name must have at least three characters";
-//   }
+  //   if (!dog.name) {
+  //     errors.name = "Name is required";
+  //   }
+  if (/[0-9!@#$%^&*]/gim.test(dog.name)) {
+    errors.name = "Name cannot contain numbers or symbols";
+  }
+  if (parseInt(dog.minWeight) > 20) {
+    errors.weight = "Minimum weight cannot exceed 20 kgs";
+  }
+  if (parseInt(dog.maxWeight) < 5) {
+    errors.weight = "Maximum cannot be less than 5 kgs";
+  }
+  //   // if(!dog.minWeight || !dog.maxWeight){
+  //   //   errors.weight = "Weight is required"
+  //   // }
+  if (parseInt(dog.minHeight) > 15) {
+    errors.height = "Minimum height cannot exceed 15 inches";
+  }
+  if (parseInt(dog.maxHeight) < 5) {
+    errors.height = "Maximum height cannot be less than 10 inches";
+  }
+  //   if (parseInt(dog.minHeight) < 5 || parseInt(dog.maxWeight) > 36) {
+  //     errors.weight = "The weight has to be between of 5 and 36 inches"
+  //   }
+  //   // if(!dog.minHeight || !dog.maxHeight){
+  //   //   errors.height = "Height is required"
+  //   // }
 
-//   if (parseInt(dog.minHeight) < 2 || parseInt(dog.maxWeight) > 90) {
-//     errors.height = "The height has to be between of 2 and 90 kgs"
-//   }
-//   // else  if(!dog.minWeight || !dog.maxWeight){
-//   //   errors.weight = "Weight is required"
-//   // }
+  if (parseInt(dog.min_life_span) > 10) {
+    errors.life_span = "Minimum life span cannot exceed 10 years";
+  }
+  if (parseInt(dog.max_life_span) < 5) {
+    errors.life_span = "Maximum life span cannot be less than 10 years";
+  }
+  //   if (parseInt(dog.min_life_span) < 6 || parseInt(dog.max_life_span) > 20) {
+  //     errors.life_span = "The weight has to be between of 6 and 20 inches"
+  //   }
+  //   // else if(!dog.min_life_span || !dog.max_life_span){
+  //   //   errors.life_span = "Life Span is required"
+  //   // }
 
-//   if (parseInt(dog.minHeight) < 5 || parseInt(dog.maxWeight) > 36) {
-//     errors.weight = "The weight has to be between of 5 and 36 inches"
-//   }
-//   // else if(!dog.minHeight || !dog.maxHeight){
-//   //   errors.height = "Height is required"
-//   // }
-
-//   if (parseInt(dog.min_life_span) < 6 || parseInt(dog.max_life_span) > 20) {
-//     errors.life_span = "The weight has to be between of 6 and 20 inches"
-//   }
-//   // else if(!dog.min_life_span || !dog.max_life_span){
-//   //   errors.life_span = "Life Span is required"
-//   // }
-
-//   return errors;
-// }
+  return errors;
+}

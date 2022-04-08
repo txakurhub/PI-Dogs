@@ -47,7 +47,4 @@ module.exports = (sequelize) => {
       defaultValue: true,
     }
   });
-  
 };
-//await sequelize.sync({force: true})
-// sequelize.sync()

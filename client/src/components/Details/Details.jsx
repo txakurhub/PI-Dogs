@@ -7,16 +7,23 @@ import styles from "./Details.module.css";
 export default function Details() {
   const dispatch = useDispatch();
   const params = useParams();
-  const selected = useSelector((state) => state.dog[0]);
-  //   console.log(typeof params.id);
-  // const idN = parseInt(params.id);
-  // let selected = dogs.find((d) => d.id === idN);
+  let selected = useSelector((state) => state.dog[0]);
 
   useEffect(() => {
     dispatch(getDogDetails(params.id));
   }, [dispatch, params.id]);
 
+  //   ----------------------  TEMPERAMENTS PUEDE SER UN ARRAY O STRING
   if (selected) {
+    
+    let tempAux = [];
+    if (Array.isArray(selected.temperaments)) {
+      selected.temperaments.forEach((t) => {
+        tempAux.push(t.name);
+      });
+      selected = {...selected, temperaments: tempAux.join(",  ")}
+    }
+
     return (
       <div className={styles.details} key={selected.id}>
         <Link to="/home">
@@ -33,11 +40,21 @@ export default function Details() {
         />
         <div className={styles.dogDetailsData}>
           <h2 className={styles.h2details}>{selected.name}</h2>
-          <h5 className={styles.h5details}>{selected.height}</h5>
-          <h5 className={styles.h5details}>{selected.weight}</h5>
-          <h5 className={styles.h5details}>{selected.life_span}</h5>
-          <h3 className={styles.h3details}>{selected.temperament}</h3>
-          <p className={styles.pDetails}>{selected.description}</p>
+          <h5 className={styles.h5details}>
+            {"Height: " + selected.height + " inches"}
+          </h5>
+          <h5 className={styles.h5details}>
+            {"Weight: " + selected.weight + " kgs"}
+          </h5>
+          <h5 className={styles.h5details}>
+            {"Life Span: " + selected.life_span}
+          </h5>
+          <h3 className={styles.h3details}>
+            {"Temperaments: " + selected.temperaments}
+          </h3>
+          <p className={styles.pDetails}>
+            {selected.description && "Description: " + selected.description}
+          </p>
         </div>
       </div>
     );

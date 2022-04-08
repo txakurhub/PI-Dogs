@@ -20,7 +20,7 @@ export default function Home() {
 
   const allDogs = useSelector((state) => state.dogs);
   const [currentPage, setCurrentPage] = useState(1);
-  const [order, setOrder] = useState("")
+  const [order, setOrder] = useState("");
 
   // const [dogsPerPage, setDogsPerPage] = useState(8);
   const lastDogI = currentPage * 8;
@@ -39,15 +39,14 @@ export default function Home() {
     e.preventDefault();
     dispatch(sort(e.target.value));
     setCurrentPage(1);
-    setOrder(`Ordenado ${e.target.value}`)
+    setOrder(`Ordenado ${e.target.value}`);
   }
-  function handleWeight(e){
+  function handleWeight(e) {
     e.preventDefault();
     dispatch(sortWeight(e.target.value));
     setCurrentPage(1);
-    setOrder(`Ordenado ${e.target.value}`)
+    setOrder(`Ordenado ${e.target.value}`);
   }
-  
 
   return (
     <div>
@@ -88,26 +87,28 @@ export default function Home() {
         </div>
       </nav>
       <div className={styles.SecondHalf}>
-
-      
-      <div className={styles.cardsGrid}>
-        {currentDogs?.map((d) => {
-          return (
-            <div key={d.id} className={styles.cards}>
-              <Link className={styles.link} key={d.id} to={`/home/${d.id}`}>
-                <Card
-                  key={d.id}
-                  name={d.name}
-                  img={d.imgUrl}
-                  temperament={d.temperament}
-                  weight={d.weight}
-                />
-              </Link>
-            </div>
-          );
-        })}
-      </div>
-      <Paginado dogsPerPage={8} allDogs={allDogs.length} paginado={paginado} />
+        <div className={styles.cardsGrid}>
+          {currentDogs?.map((d) => {
+            return (
+              <div key={d.id} className={styles.cards}>
+                <Link className={styles.link} key={d.id} to={`/home/${d.id}`}>
+                  <Card
+                    key={d.id}
+                    name={d.name}
+                    img={d.imgUrl}
+                    temperaments={d.temperaments}
+                    weight={d.weight}
+                  />
+                </Link>
+              </div>
+            );
+          })}
+        </div>
+        <Paginado
+          dogsPerPage={8}
+          allDogs={allDogs.length}
+          paginado={paginado}
+        />
       </div>
     </div>
   );

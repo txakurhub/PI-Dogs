@@ -1,7 +1,17 @@
 import React from "react";
 import styles from "./Card.module.css";
 
-export default function Card({ name, img, weight, temperament, id }) {
+export default function Card({ name, img, weight, temperaments, id }) {
+
+//    -------- TEMPERAMENTS PUEDE SER ARRAY O STRING
+
+  let tempAux = [];
+  if (Array.isArray(temperaments)) {
+    temperaments.forEach(t => { 
+      tempAux.push(t.name)
+    });
+  }
+
   return (
     <div className={styles.card} key={id}>
       <img
@@ -12,7 +22,7 @@ export default function Card({ name, img, weight, temperament, id }) {
         height="150px"
       />
       <h3>{name}</h3>
-      <h4>{temperament}</h4>
+      <h4>{tempAux.length > 0 ? tempAux.join(", ") : temperaments}</h4>
       <h5>{weight + " kgs"}</h5>
     </div>
   );

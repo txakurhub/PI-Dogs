@@ -50,3 +50,32 @@ input:valid {
   margin: 0.5rem;
 
 }
+.emergent{
+font-size: 0.7rem;
+font-family: 'Rubik Mono One', sans-serif;
+color:#EF476F
+}
+
+.buttonTemp{
+  margin: 1rem;
+  height: 2rem;
+  width: auto;
+  border-radius: 2rem;
+  border-style: none;
+  background-color: #06D6A0;
+  color:#26547C;
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size: 0.8rem;
+  font-weight:lighter;
+  display: flex;
+  align-items: center;
+}
+.buttonSelect{
+  margin-left: 1rem;
+  font-family: 'Rubik Mono One', sans-serif;
+  background-color: #FCFCFC;
+  color:black;
+  border-style: none;
+  border-radius: 2rem;
+  cursor: pointer;
+}
