@@ -5,9 +5,13 @@
     height: 40rem;
     width: auto;
 }
-
+.botones{
+    display: flex;
+    justify-content: center;
+}
 .goBack {
-    margin: 1rem;
+    margin-left: 3rem;
+    margin-bottom: 3rem;
     height: 4rem;
     width: 4rem;
     border-radius: 2rem;
@@ -17,12 +21,33 @@
     border-style: none;
     font-family: 'Rubik Mono One', sans-serif;
 }
-
+.goBack:hover {
+    width: 12rem;
+    transition: 500ms;
+}
+.deleteButton{
+    margin-right: 3rem;
+    margin-bottom: 3rem;
+    height: 4rem;
+    width: 6rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    background-color: #FCFCFC;
+    color: #EF476F;
+    border-style: none;
+    font-family: 'Rubik Mono One', sans-serif;
+}
+.deleteButton:hover{
+transition: 500ms;
+background-color: #EF476F;
+color: #FCFCFC;
+}
 .dogDetailsData {
     font-family: 'Julius Sans One', sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-bottom: 0rem;
 }
 .h2details{
     font-size: 3rem;
@@ -33,5 +58,5 @@
 }
 
 .pDetails {
-    margin: 2rem;
+    margin: 1rem;
 }

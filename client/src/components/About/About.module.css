@@ -1,24 +1,111 @@
-.description{
-    font-family: 'Julius Sans One', sans-serif;
-    margin-left: 5rem;
-    margin-right: 5rem;
-    font-size: 1.6rem;
+.h1About {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5rem;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    background-color: #FFD166;
+}
+.h1About:hover{
+    background-color: #EF476F;
+    transition: 1400ms;
+}
+.medium {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
 }
 
-.tecs{
-    margin: 4rem;
+.description {
+    font-family: 'Julius Sans One', sans-serif;
+    margin-left: 8rem;
+    margin-right: 8rem;
+    font-size: 1.6rem;
+    color: #26547C
+}
+
+.pContainer{
+   height: 10rem;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.pContainer:hover{
+    background-color: #06D6A0;
+    transition: 10500ms;
+
+}
+
+.tecs {
+    margin-top: 2rem;
+    margin-left: 10rem;
     font-size: 16rem;
     font-family: 'Julius Sans One', sans-serif;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #FFD166;
+    border-radius: 3rem;
+    width: 50rem;
+}
+.tecs:hover{
+    background-color: #EF476F;
+    transition: 1900ms;
+    color: #FFD166;
+    border-radius: 5rem;
 }
 
-.h3{
+.h3 {
+    margin-top: 0.6rem;
+    margin-bottom: 1rem;
     font-size: 2rem;
     font-family: 'Rubik Mono One', sans-serif;
+    color: black
 }
-.h4{
-  margin: 0.3rem;
+
+.h4 {
+    margin-bottom: 0.3rem;
     font-size: 1.6rem;
     font-family: 'Julius Sans One', sans-serif;
+    color: #26547C
+}
+.h4:hover{
+    color:#FFD166;
+    font-size: 2rem;
+}
+
+.chivos {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-right: 20rem;
+
+}
+
+.linkedin {
+    margin-top: 3rem;
+    margin-left: 3rem;
+    width: 4rem;
+    height: auto;
+}
+
+.linkedin:hover {
+
+    width: 5rem;
+    transition: 300ms;
+}
+
+.github {
+    margin-top: 3rem;
+    margin-left: 3rem;
+    width: 5rem;
+    height: auto;
+}
+
+.github:hover {
+    width: 5.5rem;
+    transition: 300ms;
 }
 
 .goBack {
@@ -31,4 +118,10 @@
     color: #FCFCFC;
     border-style: none;
     font-family: 'Rubik Mono One', sans-serif;
-  }
+}
+
+.goBack:hover {
+    color: #FFD166;
+    width: 12rem;
+    transition: 500ms;
+}

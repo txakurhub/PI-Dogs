@@ -1,0 +1,12 @@
+.pug{
+    margin: 15rem;
+}
+/* .relleno{
+    background-color: #FFD166;
+    height:6rem;
+    border-radius: 15rem;     
+    content-visibility:inherit ;
+} */
+.imageloader{
+    border-radius: 0rem;
+}

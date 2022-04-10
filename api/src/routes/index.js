@@ -14,6 +14,7 @@ const router = Router();
 // GET https://api.thedogapi.com/v1/breeds
 // GET https://api.thedogapi.com/v1/breeds/search?q={raza_perro}
 
+//------------------DOGS FROM API
 const getApiDogs = async () => {
   const { data } = await axios.get(
     `https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`
@@ -22,7 +23,7 @@ const getApiDogs = async () => {
     return {
       id: e.id,
       name: e.name,
-      weight: e.weight.metric === "NaN"? "0" : e.weight.metric,
+      weight: e.weight.metric === "NaN" ? "0" : e.weight.metric,
       height: e.height.metric,
       life_span: e.life_span,
       temperaments: e.temperament ? e.temperament : "No temperaments",
@@ -33,17 +34,14 @@ const getApiDogs = async () => {
   return apiData;
 };
 
+//---------------DOGS FROM DB
 const getDbDogs = async () => {
   return await Breed.findAll({
-    include: Temperament
-    // {
-    //   model: Temperament,
-    //   attributes: ["name"],
-    //   through: { attributes: [] },
-    // },
+    include: Temperament,
   });
 };
 
+//---------------------ALL DOGS
 const getAllDogs = async () => {
   const apiDogs = await getApiDogs();
   const dbDogs = await getDbDogs();
@@ -51,47 +49,54 @@ const getAllDogs = async () => {
   return allData;
 };
 
-// -----------------------------------/DOGS-------/DOGS?name=
-// ------------------------------------------ GET             
+//---------------    ROUTES      ---------------//
+
+//             /DOGS       /DOGS?name=
+// ------------------------------------------ get
 
 router.get("/dogs", async (req, res) => {
+  //----------------- IF > SEARCH BY QUERY
   const { name } = req.query;
-  // const apiDogs = await getApiDogs();
   let dogsTotal = await getAllDogs();
-
-  // const dbDogs = await getDbDogs()
   if (name) {
-    //try{
     let dogName = await dogsTotal.filter((d) =>
       d.name.toLowerCase().includes(name.toLowerCase())
     );
-    //}
- 
     Object.keys(dogName).length
       ? res.status(200).json(dogName)
       : res.status(404).json({ msg: "No one barks with that name" });
+    //--------------
   } else {
     res.status(200).json(dogsTotal);
   }
 });
 
-// ----------------------------------- /DOGS/:IDRAZA
-// ---------------------------------------- GET 
-
+//              /DOGS/:IDRAZA
+// ---------------------------------------- get
 router.get("/dogs/:idRaza", async (req, res) => {
   const { idRaza } = req.params;
   const dogTotal = await getAllDogs();
-  let dogId = await dogTotal.filter((el) => 
-    parseInt(el.id) === parseInt(idRaza)
+  let dogId = await dogTotal.filter(
+    (el) => parseInt(el.id) === parseInt(idRaza)
   );
   dogId.length
     ? res.status(200).send(dogId)
     : res.status(404).send({ info: "Bark not found" });
 });
 
-// ------------------------------------ /TEMPERAMENT
-//------------------------------------------ GET
+// -------------------------------------- delete
+router.delete("/dogs/:id", async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  parseId = parseInt(id);
+  await Breed.destroy({
+    where: { id: id },
+  });
+  res.status(200).json({ msg: "Bark erased" });
+});
 
+//                 /TEMPERAMENT
+//------------------------------------------ get
 router.get("/temperament", async (req, res) => {
   const allTempDogs = await getAllDogs();
   let temperaments = allTempDogs.map((d) => {
@@ -101,7 +106,6 @@ router.get("/temperament", async (req, res) => {
   temperaments = temperaments.join().split(",");
   temperaments = temperaments.map((t) => t.trim());
   temperaments = Array.from(new Set(temperaments)).sort();
-
   temperaments.forEach((t) => {
     Temperament.findOrCreate({
       where: { name: t },
@@ -111,9 +115,8 @@ router.get("/temperament", async (req, res) => {
   res.status(200).json(allTemperaments);
 });
 
-// ----------------------------------- /DOG
-//------------------------------------- POST
-
+//                       /DOG
+//----------------------------------------- post
 let id = 1000;
 router.post("/dog", async (req, res) => {
   const { name, weight, height, life_span, temperaments, imgUrl, createdInDb } =
@@ -132,13 +135,13 @@ router.post("/dog", async (req, res) => {
     imgUrl,
     createdInDb,
   });
-for (let i = 0; i < temperaments.length; i++) {
-let temperamentDb = await Temperament.findOne({
-    where: { name: temperaments[i] },
-  });
-  await newDog.addTemperament(temperamentDb);
-}
+  for (let i = 0; i < temperaments.length; i++) {
+    let temperamentDb = await Temperament.findOne({
+      where: { name: temperaments[i] },
+    });
+    await newDog.addTemperament(temperamentDb);
+  }
   res.status(200).json({ msg: "Bark created sucesfully!" });
 });
-
+//---------------------------------------------
 module.exports = router;

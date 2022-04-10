@@ -4,11 +4,12 @@ import {
   CREATE_DOG,
   SEARCH_BY_QUERY,
   FILTER_BY_NAME,
-  // DELETE_DOG,
+  DELETE_DOG,
   GET_ALL_DOGS,
   SORT,
   GET_DOG_DETAILS,
   SORT_WEIGHT,
+  CLEAR_DETAIL,
 } from "../actions/actions";
 
 const initialState = {
@@ -38,7 +39,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       const tempFilter = state.dogsTotal.filter((d) => {
         return payload !== "All"
           ? d.temperaments.includes(payload)
-          : tempFilter;
+          : state.dogsTotal;
       });
       return {
         ...state,
@@ -124,11 +125,16 @@ const rootReducer = (state = initialState, { type, payload }) => {
         dog: payload,
       };
     //----------------------------------------------------------------------
-    // case DELETE_DOG:
-    //   return {
-    //     ...state,
-    //     dogs: state.dogs.filter((x) => x.id !== payload),
-    //   };
+    case CLEAR_DETAIL:
+      return {
+        ...state,
+        dog: {}
+      }
+    //----------------------------------------------------------------------
+    case DELETE_DOG:
+      return {
+        ...state,
+      };
     //----------------------------------------------------------------------
     default:
       return { ...state };

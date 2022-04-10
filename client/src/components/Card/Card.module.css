@@ -1,11 +1,3 @@
-:root {
-  --color1: #581845;
-  --color2: #900C3F;
-  --color3: #C70039;
-  --color4: #FF5733;
-  --color5: #FFC300;
-}
-
 .card {
   width: 80%;
   height: auto;

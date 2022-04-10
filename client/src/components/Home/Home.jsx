@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  clearDetail,
   getAllDogs,
   getAllTemperaments,
   sort,
@@ -14,13 +15,15 @@ import styles from "./Home.module.css";
 import SearchBar from "./SearchBar";
 import FilterByName from "./filters/FilterByName";
 import FilterByTemp from "./filters/FilterByTemp";
+import Loader from "./Loader";
 
 export default function Home() {
   const dispatch = useDispatch();
 
   const allDogs = useSelector((state) => state.dogs);
   const [currentPage, setCurrentPage] = useState(1);
-  const [order, setOrder] = useState("");
+  const [, setOrder] = useState("");
+  const [loader, setLoader] = useState(true);
 
   // const [dogsPerPage, setDogsPerPage] = useState(8);
   const lastDogI = currentPage * 8;
@@ -31,8 +34,9 @@ export default function Home() {
     setCurrentPage(pageNumber);
   };
   useEffect(() => {
-    dispatch(getAllDogs());
+    dispatch(getAllDogs()).then(() => setLoader(false));
     dispatch(getAllTemperaments());
+    dispatch(clearDetail());
   }, [dispatch]);
 
   function handleSort(e) {
@@ -48,6 +52,10 @@ export default function Home() {
     setOrder(`Ordenado ${e.target.value}`);
   }
 
+  // console.log(loader);
+  if (loader === true) {
+    return <Loader />;
+  }
   return (
     <div>
       <nav className={styles.nav}>
@@ -66,19 +74,24 @@ export default function Home() {
         </div>
 
         <div className={styles.sCapa}>
-          {/* FILTRO SORT */}
-          <select className={styles.select} onChange={handleSort}>
-            <option value="Asc">A - Z</option>
-            <option value="Desc">Z - A</option>
-          </select>
-          {/* FILTRO PESO */}
-          <select className={styles.select} onChange={handleWeight}>
-            <option value="Min">Min Weight</option>
-            <option value="Max">Max Weight</option>
-          </select>
-
-          <FilterByTemp className={styles.select} />
-          <FilterByName className={styles.select} />
+          <div className={styles.sorts}>
+            {/* FILTRO SORT */}
+            <select className={styles.select} onChange={handleSort}>
+              <option value="Asc">A - Z</option>
+              <option value="Desc">Z - A</option>
+            </select>
+            <h4 className={styles.sorth4}>{`< SORT BY >`}</h4>
+            {/* FILTRO PESO */}
+            <select className={styles.select} onChange={handleWeight}>
+              <option value="Min">Min Weight</option>
+              <option value="Max">Max Weight</option>
+            </select>
+          </div>
+          <div className={styles.sorts}>
+            <FilterByTemp className={styles.select} />
+            <h4 className={styles.sorth4}>{`< FILTER BY >`}</h4>
+            <FilterByName className={styles.select} />
+          </div>
 
           <Link className={styles.linkNewBark} to="/dog">
             Create

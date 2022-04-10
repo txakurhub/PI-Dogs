@@ -12,6 +12,11 @@
   border-style: none;
   font-family: 'Rubik Mono One', sans-serif;
 }
+.goBack:hover {
+  color: #FFD166;
+  width: 12rem;
+  transition: 500ms;
+}
 .create {
   margin: 1rem;
   height: 4rem;

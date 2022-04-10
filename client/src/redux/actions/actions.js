@@ -10,7 +10,8 @@ export const FILTER_BY_NAME = "FILTER_BY_NAME";
 export const SORT = "SORT";
 export const GET_DOG_DETAILS = "GET_DOG_DETAILS";
 export const SORT_WEIGHT = "SORT_WEIGHT"
-// export const DELETE_DOG = "DELETE_DOG";
+export const CLEAR_DETAIL = "CLEAR_DETAIL"
+export const DELETE_DOG = "DELETE_DOG";
 
 
 //                        ACTIONS
@@ -83,10 +84,16 @@ export const createDog = (payload) => {
   };
 };
 //----------------------------------------------------------------------
-// export const deleteDog = (payload) => {
-//     return {
-//         type: DELETE_DOG,
-//         payload: payload
-//     }
-// };
+export const clearDetail = () => {
+return {
+  type: CLEAR_DETAIL
+}
+}
+//----------------------------------------------------------------------
+export const deleteDog = (id) => {
+    return async function(dispatch) {
+      const res = await axios.delete(`http://localhost:3001/dogs/${id}`)
+       return res
+    }
+};
 //----------------------------------------------------------------------
