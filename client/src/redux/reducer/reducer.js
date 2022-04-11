@@ -10,6 +10,7 @@ import {
   GET_DOG_DETAILS,
   SORT_WEIGHT,
   CLEAR_DETAIL,
+  EDIT_DOGGY,
 } from "../actions/actions";
 
 const initialState = {
@@ -130,6 +131,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         dog: {}
       }
+    //----------------------------------------------------------------------
+    case EDIT_DOGGY:
+      return {
+        ...state,
+      };
     //----------------------------------------------------------------------
     case DELETE_DOG:
       return {

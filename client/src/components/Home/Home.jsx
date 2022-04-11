@@ -10,7 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import Card from "../Card/Card";
 import Logo from "../../images/dog_logo.jpg";
-import Paginado from "../Paginado";
+// import Paginado from "../Paginado";
 import styles from "./Home.module.css";
 import SearchBar from "./SearchBar";
 import FilterByName from "./filters/FilterByName";
@@ -19,13 +19,20 @@ import Loader from "./Loader";
 
 export default function Home() {
   const dispatch = useDispatch();
-
   const allDogs = useSelector((state) => state.dogs);
   const [currentPage, setCurrentPage] = useState(1);
   const [, setOrder] = useState("");
   const [loader, setLoader] = useState(true);
 
-  // const [dogsPerPage, setDogsPerPage] = useState(8);
+//--------------------------PAGINADO PREV NEXT
+
+  const pageNumbers = [];
+  for (let i = 0; i <= Math.ceil(allDogs.length / 8) - 1; i++) {
+    pageNumbers.push(i + 1);
+  }
+  const totalPagesToRender = pageNumbers.slice(currentPage, currentPage+5)
+//--------------------------------------------
+
   const lastDogI = currentPage * 8;
   const firstDogI = lastDogI - 8;
   const currentDogs = allDogs.slice(firstDogI, lastDogI);
@@ -52,7 +59,6 @@ export default function Home() {
     setOrder(`Ordenado ${e.target.value}`);
   }
 
-  // console.log(loader);
   if (loader === true) {
     return <Loader />;
   }
@@ -117,11 +123,27 @@ export default function Home() {
             );
           })}
         </div>
-        <Paginado
+        {/* <Paginado
           dogsPerPage={8}
           allDogs={allDogs.length}
           paginado={paginado}
-        />
+        /> */}
+        {/*-------PAGINADO PREV NEXT -------------- */ }
+        <div className={styles.paginadoPrevNext}>
+
+        { currentPage > 1 && (
+          <button className={styles.button} onClick={() => paginado(currentPage - 1)}>Prev</button>
+          )}
+        <ul className={styles.paginadoPrevNext}>
+          {totalPagesToRender.map(p => (
+            <li> <button className={styles.button} type="button" onClick={() => paginado(p)}> {p} </button>
+            </li>
+          ))}
+          </ul>
+        {currentPage < pageNumbers.length-1 && (
+          <button className={styles.button} id="loco" onClick={() => paginado(currentPage + 1)}>Next</button>
+          )}
+          </div>
       </div>
     </div>
   );

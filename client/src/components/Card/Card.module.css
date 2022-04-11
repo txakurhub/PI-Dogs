@@ -13,7 +13,7 @@
 }
 
 h3 {
-  color: #26547C;
+  color: #26547C; 
   text-decoration: none;
   margin-bottom: 0;
   font-family: 'Julius Sans One', sans-serif;
@@ -21,7 +21,7 @@ h3 {
 }
 
 h4 {
-  color: var(--color1);
+  color: #26547C; 
   font-size: 0.7rem;
   margin-top: 0.1rem;
   margin-bottom: 0;

@@ -11,6 +11,7 @@ export const SORT = "SORT";
 export const GET_DOG_DETAILS = "GET_DOG_DETAILS";
 export const SORT_WEIGHT = "SORT_WEIGHT"
 export const CLEAR_DETAIL = "CLEAR_DETAIL"
+export const EDIT_DOGGY = "EDIT_DOGGY"
 export const DELETE_DOG = "DELETE_DOG";
 
 
@@ -88,6 +89,13 @@ export const clearDetail = () => {
 return {
   type: CLEAR_DETAIL
 }
+}
+//----------------------------------------------------------------------
+export const editDoggy = (id, payload) => {
+  return async function(dispatch) {
+    const res = await axios.put(`http://localhost:3001/dogs/${id}`, payload)
+    return res
+  }
 }
 //----------------------------------------------------------------------
 export const deleteDog = (id) => {

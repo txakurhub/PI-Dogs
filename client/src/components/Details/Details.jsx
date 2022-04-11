@@ -21,7 +21,6 @@ export default function Details() {
   if (loader === true) {
     return <Loader />;
   }
-  console.log(selected);
   if (selected) {
     // --- Manipulación de temperaments
     let tempAux = [];
@@ -34,10 +33,11 @@ export default function Details() {
 
     function handleDestroy(e) {
       e.preventDefault();
-      console.log(selected.id);
-      dispatch(deleteDog(selected.id));
-      alert("Dog erased from dabase");
-      navigate("/home");
+      if (window.confirm("ARE YOU SURE ABOUT DELETING THIS DOG?")) {
+        dispatch(deleteDog(selected.id));
+        alert("Dog erased from dabase");
+        navigate("/home");
+      }
     }
 
     return (
@@ -71,13 +71,21 @@ export default function Details() {
         </div>
 
         <div className={styles.botones}>
-          {/*  ---  botón delete --- */}
+          {/*  ---  button delete --- */}
           {selected.hasOwnProperty("createdInDb") && (
             <button className={styles.deleteButton} onClick={handleDestroy}>
               Delete
             </button>
           )}
-          {/*  ---  botón go Back --- */}
+          {/* ---  button edit --- */}
+          {/* {selected.hasOwnProperty("createdInDb") && (
+            <Link to={`/home/${selected.id}/edit`}>
+            <button className={styles.deleteButton}>
+              Edit Dog
+            </button>
+            </Link>
+          )} */}
+          {/*  ---  button go Back --- */}
           <Link to="/home">
             <button className={styles.goBack}>GO BACK</button>
           </Link>

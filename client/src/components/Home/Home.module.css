@@ -103,3 +103,23 @@ body {
         grid-template-columns: 100%;
     }
 }
+
+.button {
+    font-family: 'Rubik Mono One', sans-serif;
+    border-radius: 30%;
+    font-size: 1rem;
+    color:#EF476F;
+    border-color: #FCFCFC;
+    border-style: none;
+    margin-bottom: 2rem;
+    cursor: pointer;
+}
+ul{
+    list-style:none;
+    display: flex;
+    justify-content: flex-start;
+}
+.paginadoPrevNext{
+    display: flex;
+    justify-content: center;
+}

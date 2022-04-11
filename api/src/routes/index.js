@@ -49,9 +49,10 @@ const getAllDogs = async () => {
   return allData;
 };
 
-//---------------    ROUTES      ---------------//
-
-//             /DOGS       /DOGS?name=
+///////////////    ROUTES     ///////////////////
+//----------------------------------------------
+//             /DOGS
+//           /DOGS?name=
 // ------------------------------------------ get
 
 router.get("/dogs", async (req, res) => {
@@ -83,11 +84,30 @@ router.get("/dogs/:idRaza", async (req, res) => {
     ? res.status(200).send(dogId)
     : res.status(404).send({ info: "Bark not found" });
 });
+//----------------------------------------- put
+router.put("/dogs/:id", async (req, res) => {
+  const { id } = req.params;
+  const { name, weight, height, life_span, temperaments, imgUrl } =
+  req.body;
+  let dogEdit = await Breed.findOne({
+    where: { id: id },
+  });
+  try{
+    dogEdit.name = name
+    dogEdit.weight = weight
+    dogEdit.height = height
+    dogEdit.life_span = life_span
+    dogEdit.imgUrl = imgUrl 
+    await dogEdit.save();
+  } catch (err) {
+    console.log("Catch en PUT: " + err);
+  }
+  res.status(200).send({ msg: "Bark updated" });
+});
 
 // -------------------------------------- delete
 router.delete("/dogs/:id", async (req, res) => {
   const { id } = req.params;
-  console.log(id);
   parseId = parseInt(id);
   await Breed.destroy({
     where: { id: id },
@@ -125,7 +145,6 @@ router.post("/dog", async (req, res) => {
     return res.status(400).json({ msg: "Name, weight and height are needed" });
   }
   id++;
-  console.log(temperaments);
   const newDog = await Breed.create({
     id,
     name,
