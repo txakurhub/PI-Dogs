@@ -62,6 +62,7 @@ export default function CreateDog() {
   };
 
   function handleSubmit(e) {
+    console.log(newDog);
     if (newDog.imgUrl === "")
       newDog.imgUrl =
         "https://freepsdflyer.com/wp-content/uploads/2016/10/Lost-Dog-FREE-PSD-Flyer-Template-FreePSDFlyer-com.jpg";
@@ -198,7 +199,7 @@ export default function CreateDog() {
         <ul>
           {dog.temperaments.map((t) => {
             return (
-              <li>
+              <li key={dog.temperaments.indexOf(t)}>
                 <div
                   key={dog.temperaments.indexOf(t)}
                   className={styles.buttonTemp}
@@ -226,14 +227,14 @@ export default function CreateDog() {
 export function validate(dog) {
   let errors = {};
 
-  //   if (!dog.name) {
-  //     errors.name = "Name is required";
-  //   }
+    if (!dog.name) {
+      errors.name = "Name is required";
+    }
   if (/[0-9!@#$%^&*]/gim.test(dog.name)) {
     errors.name = "Name cannot contain numbers or symbols";
   }
-  if (parseInt(dog.minWeight) > 20) {
-    errors.weight = "Minimum weight cannot exceed 20 kgs";
+  if (parseInt(dog.minWeight) > 25) {
+    errors.weight = "Minimum weight cannot exceed 25 kgs";
   }
   if (parseInt(dog.maxWeight) < 5) {
     errors.weight = "Maximum cannot be less than 5 kgs";
