@@ -10,7 +10,7 @@ export default function CreateDog() {
   const allTemps = useSelector((state) => state.temperaments);
   let tempsName = allTemps.map((t) => t.name).sort();
 
-// ACÁ TEMPERAMENTS SIEMPRE ES UN ARRAY
+  // ACÁ TEMPERAMENTS SIEMPRE ES UN ARRAY
 
   const [errors, setErrors] = useState("");
   const [dog, setDog] = useState({
@@ -80,6 +80,7 @@ export default function CreateDog() {
       <br />
       <form onSubmit={(e) => handleSubmit(e)}>
         <h1>Create a new breed!</h1>
+        {/* --------------------------------------NAME */}
         <label>Name: </label>
         <br />
         <input
@@ -93,6 +94,7 @@ export default function CreateDog() {
         ></input>
         {errors.name && <p className={styles.emergent}>{errors.name}</p>}
         <br />
+        {/* --------------------------------------HEIGHT */}
         <label>Height in inches: </label>
         <br />
         <span className={styles.guide}>min (2)</span>
@@ -119,6 +121,7 @@ export default function CreateDog() {
         <span className={styles.guide}>max (40)</span>
         <br />
         {errors.height && <p className={styles.emergent}>{errors.height}</p>}
+        {/* --------------------------------------WEIGHT */}
         <label>Weight in kgs: </label>
         <br />
         <span className={styles.guide}>min (2)</span>
@@ -146,6 +149,7 @@ export default function CreateDog() {
         <span className={styles.guide}>max (90)</span>
         {errors.weight && <p className={styles.emergent}>{errors.weight}</p>}
         <br />
+        {/* --------------------------------------LIFE SPAN */}
         <label>Life Span in years: </label>
         <br />
         <span className={styles.guide}>min (5) </span>
@@ -175,6 +179,7 @@ export default function CreateDog() {
           <p className={styles.emergent}>{errors.life_span}</p>
         )}
         <br />
+        {/* --------------------------------------IMAGE */}
         <label>Image: </label>
         <br />
         <input
@@ -183,7 +188,9 @@ export default function CreateDog() {
           value={dog.imgUrl}
           onChange={(e) => handleChange(e)}
         ></input>
+        {errors.imgUrl && <p className={styles.emergent}>{errors.imgUrl}</p>}
         <br />
+        {/* --------------------------------------TEMPERAMENT SELECT */}
         <label>Temperament: </label>
         <br />
         <select onChange={(e) => handleSelect(e)}>
@@ -196,7 +203,8 @@ export default function CreateDog() {
             );
           })}
         </select>
-        <ul>
+        {/* --------------------------------------TEMPERAMENTS ADDED */}
+        <ul className={styles.tempsAdded}>
           {dog.temperaments.map((t) => {
             return (
               <li key={dog.temperaments.indexOf(t)}>
@@ -224,29 +232,42 @@ export default function CreateDog() {
     </div>
   );
 }
+
+//--------------FUNCION VALIDATE
 export function validate(dog) {
   let errors = {};
 
-    if (!dog.name) {
-      errors.name = "Name is required";
-    }
+  //--------------------------------NAME
+  if (!dog.name) {
+    errors.name = "Name is required";
+  }
   if (/[0-9!@#$%^&*]/gim.test(dog.name)) {
     errors.name = "Name cannot contain numbers or symbols";
   }
+
+  //-----------------------------WEIGHT
   if (parseInt(dog.minWeight) > 25) {
     errors.weight = "Minimum weight cannot exceed 25 kgs";
   }
   if (parseInt(dog.maxWeight) < 5) {
     errors.weight = "Maximum cannot be less than 5 kgs";
   }
+  if (parseInt(dog.minWeight) > parseInt(dog.maxWeight)) {
+    errors.height = "Minimum 2eight cannot be greater than maximum";
+  }
   //   // if(!dog.minWeight || !dog.maxWeight){
   //   //   errors.weight = "Weight is required"
   //   // }
+
+  //------------------------------HEIGHT
   if (parseInt(dog.minHeight) > 15) {
     errors.height = "Minimum height cannot exceed 15 inches";
   }
   if (parseInt(dog.maxHeight) < 5) {
     errors.height = "Maximum height cannot be less than 10 inches";
+  }
+  if (parseInt(dog.minHeight) > parseInt(dog.maxHeight)) {
+    errors.height = "Minimum height cannot be greater than maximum";
   }
   //   if (parseInt(dog.minHeight) < 5 || parseInt(dog.maxWeight) > 36) {
   //     errors.weight = "The weight has to be between of 5 and 36 inches"
@@ -255,11 +276,15 @@ export function validate(dog) {
   //   //   errors.height = "Height is required"
   //   // }
 
+  //-----------------------------LIFE SPAN
   if (parseInt(dog.min_life_span) > 10) {
     errors.life_span = "Minimum life span cannot exceed 10 years";
   }
   if (parseInt(dog.max_life_span) < 5) {
     errors.life_span = "Maximum life span cannot be less than 10 years";
+  }
+  if (dog.min_life_span > dog.max_life_span) {
+    errors.life_span = "Minimum life span cannot be greater than maximum";
   }
   //   if (parseInt(dog.min_life_span) < 6 || parseInt(dog.max_life_span) > 20) {
   //     errors.life_span = "The weight has to be between of 6 and 20 inches"
@@ -267,6 +292,11 @@ export function validate(dog) {
   //   // else if(!dog.min_life_span || !dog.max_life_span){
   //   //   errors.life_span = "Life Span is required"
   //   // }
+
+  //-----------------------------IMAGE
+  // if(!/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/.test(dog.imgUrl)){
+  //   errors.imgUrl = "Insert a valid image URL"
+  // }
 
   return errors;
 }

@@ -84,3 +84,8 @@ color:#EF476F
   border-radius: 2rem;
   cursor: pointer;
 }
+
+.tempsAdded{
+  display: flex;
+  justify-content: center;
+}

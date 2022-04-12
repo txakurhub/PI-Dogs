@@ -14,6 +14,7 @@ export const CLEAR_DETAIL = "CLEAR_DETAIL";
 export const EDIT_DOGGY = "EDIT_DOGGY";
 export const DELETE_DOG = "DELETE_DOG";
 
+
 //                        ACTIONS
 //----------------------------------------------------------------------
 // export const getAllDogs = () => (dispatch) => {

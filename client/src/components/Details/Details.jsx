@@ -95,7 +95,9 @@ export default function Details() {
   } else {
     return (
       <div>
-        <h1>DOG NOT FOUND</h1>
+        <h1>
+          THIS IS EMBARRASING, <br /> THAT DOG WAS NOT FOUND :(
+        </h1>
       </div>
     );
   }

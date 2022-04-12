@@ -1,12 +1,8 @@
 nav {
-    background-color: #FCFCFC;
+    background-color: #f9e0a5;
     height: 10rem;
 }
 
-.nav:hover {
-    background-color: #FFD166;
-    transition: 8000ms;
-}
 
 .fCapa {
     display: flex;
@@ -70,10 +66,7 @@ body {
     background-color: #f3dca7;
     /* background: linear-gradient(to top, #c19954, #FCFCFC) */
 }
-.SecondHalf:hover{
-    background-color: #FFD166;
-    transition: 8000ms;
-}
+
 .cardsGrid {
     display: grid;
     grid-template-columns: repeat(4, 230px);

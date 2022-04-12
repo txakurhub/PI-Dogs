@@ -46,6 +46,10 @@ export default function Home() {
     dispatch(clearDetail());
   }, [dispatch]);
 
+  function handleClick(e){
+    e.preventDefault()
+    dispatch(getAllDogs()).then(() => setLoader(false));
+  }
   function handleSort(e) {
     e.preventDefault();
     dispatch(sort(e.target.value));
@@ -75,7 +79,7 @@ export default function Home() {
               alt="un loguito"
             />
           </Link>
-          <h1>DOGS</h1>
+          <h1 onClick={handleClick}>Barkleaks</h1>
           <SearchBar />
         </div>
 
@@ -83,12 +87,14 @@ export default function Home() {
           <div className={styles.sorts}>
             {/* FILTRO SORT */}
             <select className={styles.select} onChange={handleSort}>
+              <option>Alphabetic</option>
               <option value="Asc">A - Z</option>
               <option value="Desc">Z - A</option>
             </select>
             <h4 className={styles.sorth4}>{`< SORT BY >`}</h4>
             {/* FILTRO PESO */}
             <select className={styles.select} onChange={handleWeight}>
+              <option>Weight</option>
               <option value="Min">Min Weight</option>
               <option value="Max">Max Weight</option>
             </select>
