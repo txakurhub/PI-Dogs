@@ -19,7 +19,6 @@ router.get("/", async (req, res) => {
     res.status(200).json(dogsTotal);
   }
 });
-
 //------------------------------------------- get by id
 router.get("/:idRaza", async (req, res) => {
   const { idRaza } = req.params;

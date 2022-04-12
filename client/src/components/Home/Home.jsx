@@ -131,24 +131,22 @@ export default function Home() {
         {/*-------PAGINADO PREV NEXT -------------- */}
         <div className={styles.paginadoPrevNext}>
           {currentPage > 1 && (
-            <button className={styles.button}
-              onClick={() => paginado(currentPage - 1)}>
+            <button
+              className={styles.button}
+              onClick={() => paginado(currentPage - 1)}
+            >
               Prev
             </button>
           )}
-          <ul className={styles.paginadoPrevNext}>
-            {totalPagesToRender.map((p) => (
-              <li key={parseInt(p)}>
-                <button
-                  className={styles.button}
-                  type="button"
-                  onClick={() => paginado(p)}
-                >
-                  {p}
-                </button>
-              </li>
-            ))}
-          </ul>
+          {totalPagesToRender.map((p) => (
+            <button
+              className={styles.button}
+              type="button"
+              onClick={() => paginado(p)}
+            >
+              {p}
+            </button>
+          ))}
           {currentPage < pageNumbers.length - 1 && (
             <button
               className={styles.button}
