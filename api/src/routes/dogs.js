@@ -19,7 +19,10 @@ router.get("/", async (req, res) => {
       : res.status(404).json({ msg: "No one barks with that name" });
     //--------------
   } else {
-
+    // console.log(
+    //   dogsTotal.filter(d => d.hasOwnProperty("createdInDb"))
+      
+    //   );
     res.status(200).json(dogsTotal);
   }
 });
@@ -35,7 +38,7 @@ router.get("/:idRaza", async (req, res) => {
 
   dogId.length
     ? res.status(200).send(dogId)
-    : res.status(404).send({ info: "Bark not found" });
+    : res.status(200).send({ info: "Bark not found" });
 });
 
 // -------------------------------------- delete

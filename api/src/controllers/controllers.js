@@ -24,15 +24,30 @@ const getApiDogs = async () => {
 
 //---------------DOGS FROM DB
 const getDbDogs = async () => {
-  return await Breed.findAll({
-    include: Temperament,
-  });
+   const dbData = await Breed.findAll({
+    include: {
+      model: Temperament,
+      attributes:['name'],
+  }});
+  // console.log("----------------------" + await dbData.temperaments);
+  const zzz = await dbData.map(d => {
+    return {
+      id: d.id,
+      name: d.name,
+      weight: d.weight,
+      height: d.height,
+      life_span: d.life_span,
+      temperaments: d.temperaments.map( t => t.name), 
+      imgUrl: d.imgUrl,
+    }})
+return zzz
 };
 
 //---------------------ALL DOGS
 const getAllDogs = async () => {
   const apiDogs = await getApiDogs();
   const dbDogs = await getDbDogs();
+  console.log(dbDogs);
   const allData = apiDogs.concat(dbDogs);
   return allData;
 };

@@ -8,22 +8,24 @@ export default function About() {
   return (
     <div className={styles.container}>
       <div className={styles.h1About}>
-
-      <h1 className={styles.h1}>ABOUT</h1>
+        <h1 className={styles.h1}>ABOUT</h1>
       </div>
-    <div className={styles.pContainer}>
-      <p className={styles.description}>
-        This proyect is a SPA (Single Page Application) in which we can see
+      <div className={styles.pContainer}>
+        <p className={styles.description}>
+          Barkleaks es una organización mediática internacional sin ánimo de
+          lucro que publica a través de su sitio web razas y detalles de las
+          mismas filtradas con contenido sensible en materia de interés público,
+          preservando el anonimato de su API y respectiva DB.
+          {/* is a SPA (Single Page Application) in which we can see
         information of different breeds of dogs, brought from an external API
         (https://thedogapi.com/), as well as create new breeds through a
         controlled form and save them in a database, to later to be able to
-        search, filter and obtain the details of the selected breed.
-      </p>
-    </div>
+        search, filter and obtain the details of the selected breed. */}
+        </p>
+      </div>
       <div className={styles.medium}>
-      
         <div className={styles.tecs}>
-          <h3 className={styles.h3}>Used technology</h3>
+          <h3 className={styles.h3}>Tecnologías usadas: </h3>
           <h4 className={styles.h4}>» JavaScript, ES6 </h4>
           <h4 className={styles.h4}>» Data Base: PostgreSQL</h4>
           <h4 className={styles.h4}>» Back-End: Nodejs, Express, Sequelize</h4>

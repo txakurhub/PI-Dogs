@@ -63,6 +63,7 @@ export default function CreateDog() {
 
   function handleSubmit(e) {
     console.log(newDog);
+    
     if (newDog.imgUrl === "")
       newDog.imgUrl =
         "https://freepsdflyer.com/wp-content/uploads/2016/10/Lost-Dog-FREE-PSD-Flyer-Template-FreePSDFlyer-com.jpg";

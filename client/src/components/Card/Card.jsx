@@ -5,13 +5,12 @@ export default function Card({ name, img, weight, temperaments, id }) {
 
 //    -------- TEMPERAMENTS PUEDE SER ARRAY O STRING
 
-  let tempAux = [];
+  const tempAux = [];
   if (Array.isArray(temperaments)) {
     temperaments.forEach(t => { 
-      tempAux.push(t.name)
+      tempAux.push(t)
     });
   }
-
   return (
     <div className={styles.card} key={id}>
       <img

@@ -26,7 +26,7 @@ export default function Details() {
     let tempAux = [];
     if (Array.isArray(selected.temperaments)) {
       selected.temperaments.forEach((t) => {
-        tempAux.push(t.name);
+        tempAux.push(t);
       });
       selected = { ...selected, temperaments: tempAux.join(",  ") };
     }
@@ -39,7 +39,6 @@ export default function Details() {
         navigate("/home");
       }
     }
-
     return (
       <div className={styles.details} key={selected.id}>
         <br />
@@ -96,8 +95,11 @@ export default function Details() {
     return (
       <div>
         <h1>
-          THIS IS EMBARRASING, <br /> THAT DOG WAS NOT FOUND :(
+          TRY WITH ANOTHER ONE, <br /> THIS DOG WAS <br/> NOT FOUND :(
         </h1>
+        <Link to="/home">
+            <button className={styles.goBack}>GO BACK</button>
+          </Link>
       </div>
     );
   }

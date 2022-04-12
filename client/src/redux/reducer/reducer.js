@@ -24,6 +24,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     //----------------------------------------------------------------------
     case GET_ALL_DOGS:
+   
       return {
         ...state,
         dogs: payload,
@@ -50,8 +51,8 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case FILTER_BY_NAME:
       const nameFilter =
         payload === "Created"
-          ? state.dogsTotal.filter((d) => d.createdInDb)
-          : state.dogsTotal.filter((d) => !d.createdInDb);
+          ? state.dogsTotal.filter((d) => d.id > 999)
+          : state.dogsTotal.filter((d) => d.id < 999);
       return {
         ...state,
         dogs: payload === "All" ? state.dogsTotal : nameFilter,
