@@ -33,8 +33,8 @@ The general idea is to create an application in which different dog breeds can b
     - Express
     - Sequelize - Postgres
 
-#### Added features:
-    - Edit a created breed
-    - Delete a created breed
-    - Deployment
-    - About section
+## Added features:
+- Edit a created breed
+- Delete a created breed
+- Deployment
+- About section
