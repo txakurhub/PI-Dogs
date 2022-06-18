@@ -36,7 +36,8 @@ The general idea is to create an application in which different dog breeds can b
 - About section
 
 ## Deploy: https://barkleaks.vercel.app/
-## Screenshots
+### Screenshots
+</br>
 <p align='center'>
 
     <img src='https://res.cloudinary.com/ddkurzft6/image/upload/v1655513432/barkleaks/landing_1_auixbi.jpg' alt='barkleaks-landing' />
