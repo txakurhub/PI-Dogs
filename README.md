@@ -20,9 +20,13 @@
 ## Statement
 
 The general idea is to create an application in which different dog breeds can be viewed along with relevant information about them using the external api [the dog api](https://thedogapi.com/)  and from it to be able to, among other things:
+</br>
     - Search breeds
+    </br>
     - Filter / Sort breeds
+    </br>
     - Add new breeds
+    </br>
 <!---La idea general es crear una aplicación en la cual se puedan ver distintas razas de perro junto con información relevante de las mismas utilizando la api externa [the dog api](https://thedogapi.com/) y a partir de ella poder, entre otras cosas:
   - Buscar perros
   - Filtrarlos / Ordenarlos
