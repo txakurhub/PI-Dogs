@@ -35,7 +35,7 @@ The general idea is to create an application in which different dog breeds can b
 - Deployment
 - About section
 
-## Deploy: https://barkleaks.vercel.app/
+## Deployed project: https://barkleaks.vercel.app/
 
  ## Screenshots
 <p align='center'>
