@@ -36,13 +36,17 @@ The general idea is to create an application in which different dog breeds can b
 - About section
 
 ## Deploy: https://barkleaks.vercel.app/
-### Screenshots
-</br>
-<p align='center'>
 
+ ## Screenshots
+<p align='center'>
+  Landing Page
     <img src='https://res.cloudinary.com/ddkurzft6/image/upload/v1655513432/barkleaks/landing_1_auixbi.jpg' alt='barkleaks-landing' />
+    Home
     <img src='https://res.cloudinary.com/ddkurzft6/image/upload/v1655513432/barkleaks/home_2_wytjnc.jpg' alt='barkleaks-home' />
+    Breed Details
     <img src='https://res.cloudinary.com/ddkurzft6/image/upload/v1655513433/barkleaks/detail_1_kdwfht.jpg' alt='barkleaks-detail' />
+    Controlled form
     <img src='https://res.cloudinary.com/ddkurzft6/image/upload/v1655513432/barkleaks/form_1_owjrhc.jpg' alt='barkleaks-form'/>
+    About
     <img src='https://res.cloudinary.com/ddkurzft6/image/upload/v1655513432/barkleaks/about_1_wajsrj.jpg' alt='barkleaks-about' />
 </p>
