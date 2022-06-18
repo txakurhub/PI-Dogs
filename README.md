@@ -1,12 +1,3 @@
-<p align='center'>
-    Deploy: https://barkleaks.vercel.app/
-    <img src='https://res.cloudinary.com/ddkurzft6/image/upload/v1655513432/barkleaks/landing_1_auixbi.jpg' alt='barkleaks-landing' />
-    <img src='https://res.cloudinary.com/ddkurzft6/image/upload/v1655513432/barkleaks/home_2_wytjnc.jpg' alt='barkleaks-home' />
-    <img src='https://res.cloudinary.com/ddkurzft6/image/upload/v1655513433/barkleaks/detail_1_kdwfht.jpg' alt='barkleaks-detail' />
-    <img src='https://res.cloudinary.com/ddkurzft6/image/upload/v1655513432/barkleaks/form_1_owjrhc.jpg' alt='barkleaks-form'/>
-    <img src='https://res.cloudinary.com/ddkurzft6/image/upload/v1655513432/barkleaks/about_1_wajsrj.jpg' alt='barkleaks-about' />
-</p>
-
 # Academic Project - Barkleaks
 
 ## Project Objectives
@@ -43,3 +34,14 @@ The general idea is to create an application in which different dog breeds can b
 - Delete a created breed
 - Deployment
 - About section
+
+## Deploy: https://barkleaks.vercel.app/
+## Screenshots
+<p align='center'>
+
+    <img src='https://res.cloudinary.com/ddkurzft6/image/upload/v1655513432/barkleaks/landing_1_auixbi.jpg' alt='barkleaks-landing' />
+    <img src='https://res.cloudinary.com/ddkurzft6/image/upload/v1655513432/barkleaks/home_2_wytjnc.jpg' alt='barkleaks-home' />
+    <img src='https://res.cloudinary.com/ddkurzft6/image/upload/v1655513433/barkleaks/detail_1_kdwfht.jpg' alt='barkleaks-detail' />
+    <img src='https://res.cloudinary.com/ddkurzft6/image/upload/v1655513432/barkleaks/form_1_owjrhc.jpg' alt='barkleaks-form'/>
+    <img src='https://res.cloudinary.com/ddkurzft6/image/upload/v1655513432/barkleaks/about_1_wajsrj.jpg' alt='barkleaks-about' />
+</p>
