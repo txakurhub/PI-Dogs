@@ -1,4 +1,5 @@
 <p align='center'>
+    Deploy: https://barkleaks.vercel.app/
     <img src='https://res.cloudinary.com/ddkurzft6/image/upload/v1655513432/barkleaks/landing_1_auixbi.jpg' alt='barkleaks-landing' />
     <img src='https://res.cloudinary.com/ddkurzft6/image/upload/v1655513432/barkleaks/home_2_wytjnc.jpg' alt='barkleaks-home' />
     <img src='https://res.cloudinary.com/ddkurzft6/image/upload/v1655513433/barkleaks/detail_1_kdwfht.jpg' alt='barkleaks-detail' />
