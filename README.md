@@ -36,7 +36,7 @@ The general idea is to create an application in which different dog breeds can b
 - Deployment
 - About section
 
-## Deployed project: https://barkleaks.vercel.app/
+
 
  ## **Preview**
 <p align='center'>
@@ -51,3 +51,5 @@ The general idea is to create an application in which different dog breeds can b
     About
     <img src='https://res.cloudinary.com/ddkurzft6/image/upload/v1655513432/barkleaks/about_1_wajsrj.jpg' alt='barkleaks-about' />
 </p>
+
+## Deployed project: https://barkleaks.vercel.app/
