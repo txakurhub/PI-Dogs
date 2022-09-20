@@ -1,4 +1,5 @@
-# Academic Project - Barkleaks
+# Barkleaks
+**Little project made as a evaluative instance at [Soy Henry](https://www.soyhenry.com/)'s web development bootcamp.**
 
 ## Project Objectives
 
@@ -23,7 +24,7 @@ The general idea is to create an application in which different dog breeds can b
   - Filtrarlos / Ordenarlos
   - Agregar nuevos perros
 --->
-#### Required technologies:
+#### 💻 **Required technologies:**
     - React
     - Redux
     - Express
@@ -37,7 +38,7 @@ The general idea is to create an application in which different dog breeds can b
 
 ## Deployed project: https://barkleaks.vercel.app/
 
- ## Screenshots
+ ## **Preview**
 <p align='center'>
   Landing Page
     <img src='https://res.cloudinary.com/ddkurzft6/image/upload/v1655513432/barkleaks/landing_1_auixbi.jpg' alt='barkleaks-landing' />
